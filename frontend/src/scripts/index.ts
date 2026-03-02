@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   await loadComponent("sidebar-placeholder", "./src/components/sidebar.html");
   await loadComponent("sidebar-navbar", "./src/components/navbar.html");
-
+    await loadComponent("dashboard-placeholder", "./src/pages/Dashboard.html");
   sidebar();
 
 

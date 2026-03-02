@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../dist/output.css">
+    <!-- <script  type="module" src="../scripts/dist/protect.js" defer></script> -->
+    <!-- <script  type="module" src="../scripts/dist/index.js" defer></script> -->
+    <script  type="module" src="../scripts/dist/Dashboard.js" defer></script>
+</head>
+<body class="flex relative">
+    <div id="sidebar-navbar"></div>
+    <div id="sidebar-placeholder" ></div>
+    <div class="flex-1 p-8">
+
+ 
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-3xl font-bold text-gray-800">Dashboard</h2>
+
+
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-sm mb-8">
+
+      <h3 class="text-lg font-semibold text-gray-700 mb-6">Inventory Summary</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+        <div class="bg-teal-50 p-6 rounded-xl cursor-pointer hover:shadow" >
+          <a href="#">    
+               <p class="text-gray-500 mb-2">Total Products</p>
+          <h4 class="text-2xl font-bold text-teal-700" id="total-products">00</h4></a>
+   
+        </div>
+
+        <div class="bg-yellow-50 p-6 rounded-xl cursor-pointer hover:shadow" >
+          <a href="#">
+          <p class="text-gray-500 mb-2">Total Categories</p>
+          <h4 class="text-2xl font-bold text-yellow-600" id="total-categories">00</h4>
+          </a>
+        </div>
+
+        <div class="bg-blue-50 p-6 rounded-xl cursor-pointer hover:shadow">
+          <a href="#">
+          <p class="text-gray-500 mb-2">Total Users</p>
+          <h4 class="text-2xl font-bold text-blue-600"  id="total-users">00</h4>
+          </a>
+        </div>
+
+        <div class="bg-purple-50 p-6 rounded-xl cursor-pointer hover:shadow" >
+          <a href="#"><p class="text-gray-500 mb-2">Customer Orders</p>
+          <h4 class="text-2xl font-bold text-purple-600" id="total-orders">00</h4></a>
+          
+        </div>
+
+      </div>
+    </div>
+
+<!-- 
+    <div class="bg-white p-6 rounded-2xl shadow-sm mb-8">
+
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-lg font-semibold text-gray-700">Latest Orders</h3>
+        <a href="#" class="text-teal-600 hover:underline text-sm">View Detail</a>
+      </div>
+
+      <div class="space-y-5">
+
+        <div class="p-4 border border-gray-300 rounded-xl hover:bg-gray-50">
+          <div class="flex justify-between items-center">
+            <div>
+              <h4 class="font-medium text-gray-700">Urgent T-shirt Delivery</h4>
+              <p class="text-sm text-gray-500">1 product</p>
+            </div>
+            <span class="px-3 py-1 text-sm bg-blue-100 text-blue-600 rounded-full">
+              To Do
+            </span>
+          </div>
+  
+        </div>
+
+        <div class="p-4 border border-gray-300 rounded-xl hover:bg-gray-50">
+          <div class="flex justify-between items-center">
+            <div>
+              <h4 class="font-medium text-gray-700">Monthly NOV Inventory - Warehouse A</h4>
+              <p class="text-sm text-gray-500">50 products</p>
+            </div>
+            <span class="px-3 py-1 text-sm bg-yellow-100 text-yellow-600 rounded-full">
+              Processing
+            </span>
+          </div>
+          
+          </div>
+  
+
+        <div class="p-4 border border-gray-300 rounded-xl hover:bg-gray-50">
+          <div class="flex justify-between items-center">
+            <div>
+              <h4 class="font-medium text-gray-700">Monthly OCT Inventory - Warehouse A</h4>
+              <p class="text-sm text-gray-500">58 products</p>
+            </div>
+            <span class="px-3 py-1 text-sm bg-green-100 text-green-600 rounded-full">
+              Completed
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-2xl shadow-sm">
+
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-lg font-semibold text-gray-700">Top Selling Products</h3>
+        <a href="#" class="text-teal-600 hover:underline text-sm">View All</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+        <div class="border border-gray-300 rounded-xl p-4 text-center hover:shadow-md transition">
+          <div class="h-40 bg-gray-100 rounded-lg mb-4"></div>
+          <h4 class="font-medium text-gray-700">Green T-Shirt</h4>
+          <p class="text-sm text-gray-500">120 Sold</p>
+        </div>
+
+        <div class="border border-gray-300 rounded-xl p-4 text-center hover:shadow-md transition">
+          <div class="h-40 bg-gray-100 rounded-lg mb-4"></div>
+          <h4 class="font-medium text-gray-700">Blue Hoodie</h4>
+          <p class="text-sm text-gray-500">98 Sold</p>
+        </div>
+
+        <div class="border border-gray-300 rounded-xl p-4 text-center hover:shadow-md transition">
+          <div class="h-40 bg-gray-100 rounded-lg mb-4"></div>
+          <h4 class="font-medium text-gray-700">White Shirt</h4>
+          <p class="text-sm text-gray-500">85 Sold</p>
+        </div>
+
+        <div class="border border-gray-300 rounded-xl p-4 text-center hover:shadow-md transition">
+          <div class="h-40 bg-gray-100 rounded-lg mb-4"></div>
+          <h4 class="font-medium text-gray-700">Pink Sweatshirt</h4>
+          <p class="text-sm text-gray-500">70 Sold</p>
+        </div>
+
+      </div>
+
+    </div> -->
+
+  </div>
+</body>
+</html>
