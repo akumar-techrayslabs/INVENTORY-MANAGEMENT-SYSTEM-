@@ -3,6 +3,13 @@
     "@tailwindcss/cli": "^4.2.1",
     "tailwindcss": "^4.2.1"
   },
+  "scripts": {
+        "dev":"npx @tailwindcss/cli -i ./src/styles/input.css -o ./dist/output.css --watch",
+    "build:css":"npx tailwindcss -i ./src/styles/input.css -o ./dist/output.css --minify",
+    "build:ts":"npx tsc",
+    "build": "npm run build:css && npm run build:ts"
+  },
+
   "devDependencies": {
     "typescript": "^5.9.3"
   }
