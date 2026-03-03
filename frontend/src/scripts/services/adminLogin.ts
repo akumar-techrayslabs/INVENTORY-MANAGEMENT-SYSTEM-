@@ -35,7 +35,7 @@ adminLoginForm.addEventListener("submit",async (e)=>{
     if(result)
     {
         showAlert();
-        // window.location.href= "./Dashboard.html"
+
     }
     else{
         showError();
@@ -44,9 +44,3 @@ adminLoginForm.addEventListener("submit",async (e)=>{
     
 
 })
-
-// const logoutbtn = document.getElementById("logout") as HTMLButtonElement;
-
-// logoutbtn.addEventListener("click",()=>{
-//     logoutAdmin();
-// })
