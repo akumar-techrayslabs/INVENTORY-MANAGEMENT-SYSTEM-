@@ -1,4 +1,4 @@
-import { logoutAdmin, verifyToken } from "../services/Auth.js";
+import { verifyToken } from "../services/Auth.js";
 
 
 
@@ -8,7 +8,7 @@ export function logout(){
     
     
     logoutbtn.addEventListener("click",()=>{
-        logoutAdmin()
+        localStorage.removeItem("token");
         
         window.location.reload();
         

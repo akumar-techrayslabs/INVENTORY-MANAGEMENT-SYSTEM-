@@ -59,7 +59,5 @@ export function loginSuperAdmin(email: string, password: string) {
 }
 
 // ------------------- Logout Function -------------------------------
-export function logoutAdmin() {
-  localStorage.removeItem("token");
-}
+
 
