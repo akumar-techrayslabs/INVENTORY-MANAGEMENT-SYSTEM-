@@ -4,7 +4,7 @@ const PATH = window.location.origin
 
 const isTokenIsStillValid =  verifyToken();
 document.addEventListener('DOMContentLoaded', async ()=>{
-    console.log(isTokenIsStillValid);
+    console.log("token is still valid ",isTokenIsStillValid);
     // console.log(user);
     
     

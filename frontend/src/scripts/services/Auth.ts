@@ -30,6 +30,8 @@ export function verifyToken() {
 
     if (decoded.exp < Date.now()) {
       localStorage.removeItem("token");
+      console.log("this is where the issue is ");
+      
       return { success: false };
     }
 
@@ -54,8 +56,11 @@ export function loginSuperAdmin(email: string, password: string) {
     localStorage.setItem("token", token);
     return { success: true };
   }
+  else{
+     return { success: false, message: "Invalid credentials" };
+  }
 
-  return { success: false, message: "Invalid credentials" };
+ 
 }
 
 // ------------------- Logout Function -------------------------------

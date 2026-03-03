@@ -28,16 +28,18 @@ function showError() {
 adminLoginForm.addEventListener("submit",async (e)=>{
     e.preventDefault();
     const email = (document.querySelector("input[type = 'email']") as HTMLInputElement).value;
-    const password = (document.querySelector("input[type = 'password']") as HTMLInputElement).value;
+    const password = (document.querySelector("#password") as HTMLInputElement).value;
     console.log("email",email,": ", "password",password);
 
-    const result =  loginSuperAdmin(email,password);
-    if(result)
+    console.log("here is the reuslt");
+    const result = loginSuperAdmin(email,password);
+    
+    if(result.success === true)
     {
         showAlert();
 
     }
-    else{
+    else if(result.success === false){
         showError();
     }
     
