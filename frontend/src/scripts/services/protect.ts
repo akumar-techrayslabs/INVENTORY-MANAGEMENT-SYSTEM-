@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     
     if(!isTokenIsStillValid.success)
         {
+
             window.location.href = `${PATH}/src/pages/Auth.html`
+
         }
     })
     
