@@ -1,5 +1,5 @@
 
-import { loginSuperAdmin,logoutAdmin } from "./Auth.js";
+import { loginSuperAdmin } from "./Auth.js";
 
 const adminLoginForm = document.querySelector("form") as HTMLFormElement;
 console.log("hello kajri");
