@@ -9,9 +9,9 @@ const BASE = window.location.origin;
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-  await loadComponent("sidebar-placeholder", `${BASE}/frontend/src/components/sidebar.html`);
-  await loadComponent("sidebar-navbar", `${BASE}/frontend/src/components/navbar.html`);
-  await loadComponent("dashboard-placeholder", `${BASE}/frontend/src/pages/Dashboard.html`);
+  await loadComponent("sidebar-placeholder", `${BASE}/src/components/sidebar.html`);
+  await loadComponent("sidebar-navbar", `${BASE}/src/components/navbar.html`);
+  await loadComponent("dashboard-placeholder", `${BASE}/src/pages/Dashboard.html`);
   sidebar();
   logout();
 
