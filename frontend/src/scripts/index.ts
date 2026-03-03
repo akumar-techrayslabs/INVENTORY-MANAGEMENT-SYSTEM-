@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadComponent("dashboard-placeholder", `${BASE}/src/pages/Dashboard.html`);
 
   sidebar();
-  logout();
 
+    logout();
 
 });
