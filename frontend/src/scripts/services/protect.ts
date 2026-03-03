@@ -18,41 +18,41 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     
     
     
-// export function hasPermission(perm: string): boolean {
+export function hasPermission(perm: string): boolean {
 
-//   const user = isTokenIsStillValid?.payload;
-//     const role = isTokenIsStillValid?.payload;
-//   if (!user) return false;
-//   if(role == "superadmin")
-//   {
-//     console.log("user.role_name",user.role_name);
+  const user = isTokenIsStillValid?.payload;
+    const role = user?.role;
+  if (!user) return false;
+  if(role == "superadmin")
+  {
+    console.log("user.role_name",role);
     
-//       return true;
-//   }else{
-//     const role_id = user.role_id;
+      return true;
+  }else{
+    const role_id = user.role_id;
 
-//   const permissions = JSON.parse(
-//     localStorage.getItem("permissions") || "[]"
-//   );
+  const permissions = JSON.parse(
+    localStorage.getItem("permissions") || "[]"
+  );
 
-//   const rolePermissions = JSON.parse(
-//     localStorage.getItem("rolePermissions") || "[]"
-//   );
+  const rolePermissions = JSON.parse(
+    localStorage.getItem("rolePermissions") || "[]"
+  );
 
-//   const permissionObj = permissions.find(
-//     (p: any) => p.name === perm
-//   );
+  const permissionObj = permissions.find(
+    (p: any) => p.name === perm
+  );
 
-//   if (!permissionObj) return false;
+  if (!permissionObj) return false;
 
-//   const hasPerm = rolePermissions.some(
-//     (rp: any) =>
-//       rp.role_id === role_id &&
-//       rp.permission_id === permissionObj.id
-//   );
+  const hasPerm = rolePermissions.some(
+    (rp: any) =>
+      rp.role_id === role_id &&
+      rp.permission_id === permissionObj.id
+  );
 
-//   return hasPerm;
-//   }
+  return hasPerm;
+  }
 
   
-// }
+}

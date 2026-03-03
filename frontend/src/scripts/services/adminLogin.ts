@@ -2,7 +2,7 @@
 import { loginSuperAdmin } from "./Auth.js";
 
 const adminLoginForm = document.querySelector("form") as HTMLFormElement;
-console.log("hello kajri");
+console.log("hello ");
 
 // declare var Swal: { fire: (arg0: { title: string; text: string; icon: string; confirmButtonText: string; }) => void; };
 declare var Swal: any;

@@ -8,7 +8,7 @@ const SUPER_ADMIN = {
 
 //  ---------  Token Generation function ---- 
 
-function generateToken(data: Omit<TokenPayload, "exp">): string {
+export function generateToken(data: Omit<TokenPayload, "exp">): string {
   const payload: TokenPayload = {
     ...data,
     exp: Date.now() + 24 * 60 * 60 * 1000

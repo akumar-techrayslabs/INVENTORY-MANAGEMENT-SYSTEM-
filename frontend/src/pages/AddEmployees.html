@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Managment</title>
+    <link href="../../dist/output.css" rel="stylesheet" />
+    <!-- <script src="/src/scripts/src/Product.js" defer></script> -->
+    <script
+      src="https://kit.fontawesome.com/3111ef2b65.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="../../dist/services/protect.js" defer></script>
+    <script type="module" src="../../dist/index.js" defer></script>
+    <script type="module" src="../../dist/pages/UserManagement.js" defer></script>
+  </head>
+
+  <body id="#users-list" class="flex relative">
+    <div id="sidebar-navbar"></div>
+    <div id="sidebar-placeholder"></div>
+    <div class="flex-1 my-30 justify-center items-center">
+          <div class="absolute right-10 top-30 w-20 h-10 bg-teal-700 shadow-2xl  rounded-2xl flex justify-center items-center cursor-pointer" title="Add User" id="add-btn"> <i class="fa-solid fa-plus " style="color: #ffffff;"></i></div>
+       
+   
+                <table class="w-[80%] mx-auto text-sm text-left text-gray-600" id="userTable">
+
+            <thead class="bg-teal-200 text-gray-700 uppercase text-xs rounded ">
+                <tr>
+                    <th class="px-4 py-3">Sl.no</th>
+                    <th class="px-4 py-3">Full Name</th>
+                    <th class="px-4 py-3">email</th>
+                    <th class="px-4 py-3">phone_no</th>
+                    <th class="px-4 py-3">password</th>
+                    <th class="px-4 py-3">role</th>
+                    <th class="px-4 py-3">is_Active</th>
+
+                </tr>
+            </thead>
+
+            <tbody class="divide-y">   </tbody>
+
+        </table>
+      <div class="text-teal-700 flex justify-center">
+        <form
+          id="user-form"
+          class="hidden w-full form max-w-275 px-10 py-8 text-center shadow-xl rounded-2xl flex flex-col gap-1 items-center"
+        >
+          <h1 class="text-center md:text-4xl text-xl mb-5">Add User</h1>
+
+          <input
+            class="w-[70%] py-4 px-4 mr-2 mb-2 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none bg-gray-100"
+            type="text"
+            id="user-name"
+            name="user-name"
+            placeholder="Enter User Name"
+            required
+          />
+          <!-- <input
+            class="w-[70%] py-4 bg-gray-100  px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+            type="text"
+            id="product-category"
+            name="product-category"
+            placeholder="Enter Product Category"
+            required
+          /> -->
+          <select
+            id="user-role"
+            class="w-[70%] py-4 bg-gray-100 px-4 mb-3 text-black text-sm rounded-sm outline-none"
+            required
+          >
+            <option value="">Select Role</option>
+          </select>
+
+          <input
+            class="w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+            type="tel"
+            id="user-email"
+            name="user-email"
+            placeholder="Enter emai"
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            title="Enter a valid email address like example@gmail.com"
+            required
+          />
+
+          <!-- <input
+            class="md:w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+            type="number"
+            min="0"
+            id="product-stock"
+            name="product-stock"
+            required
+            placeholder="Enter Stock"
+          /> -->
+          <input
+            class="md:w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+            type="text"
+      
+            id="user-phone"
+            name="user-phone"
+            required
+            placeholder="Enter Phone no "
+          />
+          <input
+            class="md:w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+            type="password"
+          
+            id="user-password"
+            name="user-password"
+            required
+            placeholder="Enter Password"
+          />
+          
+
+          <button
+            type="submit"
+            class="bg-teal-700 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full cursor-pointer"
+          >
+            Add New User
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
