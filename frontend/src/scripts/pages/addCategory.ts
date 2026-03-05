@@ -170,7 +170,6 @@ const btn = document.getElementById("add-btn") as HTMLDivElement;
 console.log("btn", btn);
 
 btn.addEventListener("click", () => {
-
   console.log("clicked");
 
   form.classList.toggle("hidden");
