@@ -1,0 +1,152 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory</title>
+ <link rel="stylesheet" href="../../dist/output.css">
+    <script  type="module" src="../../dist/services/protect.js" defer></script>
+    <script  type="module" src="../../dist/index.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="module" src="../../dist/pages/productList.js"></script>
+          <script
+      src="https://kit.fontawesome.com/3111ef2b65.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body class="flex relative">
+    <div id="sidebar-navbar"></div>
+    <div id="sidebar-placeholder" ></div>
+    <div class="flex-1 p-8">
+
+<div class="max-w-full mx-auto bg-white rounded-2xl shadow p-6">
+
+
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Product List</h1>
+
+
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-600" id="productTable">
+
+            <thead class="bg-teal-200 text-gray-700 uppercase text-xs rounded ">
+                <tr>
+                    <th class="px-4 py-3">Sl.no</th>
+                    <th class="px-4 py-3">Product Name</th>
+                    <th class="px-4 py-3">Category</th>
+                    <th class="px-4 py-3">sku</th>
+                    <th class="px-4 py-3">Variant</th>
+                    <th class="px-4 py-3">Variant-sku</th>
+                    <th class="px-4 py-3">Price</th>
+                    <th class="px-4 py-3">Warehouse</th>
+                    <th class="px-4 py-3 ">is Active</th>
+                    <th class="px-4 py-3 ">Stock</th>
+                    <th class="px-4 py-3 ">Delete</th>
+                    <th class="px-4 py-3">Edit</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y">
+
+          
+
+            </tbody>
+
+        </table>
+                <div
+          id="edit-form"
+          class="hidden top-0 min-w-full min-h-full  flex justify-center items-center bg-white z-500"
+        >
+
+                <form
+          id="product-form"
+          class="w-full form max-w-275 px-10 py-8 text-center shadow-xl rounded-2xl flex flex-col gap-1 items-center"
+        >
+          <h1 class="text-center md:text-4xl text-xl mb-5">Edit Product</h1>
+
+          <input
+            class="w-[70%] py-4 px-4 mr-2 mb-2 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none bg-gray-100"
+            type="text"
+            id="product-name"
+            name="product-name"
+            placeholder="Enter Product Name"
+            required
+          />
+          <!-- <input
+            class="w-[70%] py-4 bg-gray-100  px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+            type="text"
+            id="product-category"
+            name="product-category"
+            placeholder="Enter Product Category"
+            required
+          /> -->
+          <select
+            id="product-category"
+            class="w-[70%] py-4 bg-gray-100 px-4 mb-3 text-black text-sm rounded-sm outline-none"
+            required
+          >
+            <option value="">Select Category</option>
+          </select>
+
+          <input
+            class="w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+            type="tel"
+            id="product-sku"
+            name="product-sku"
+            placeholder="Enter Product sku"
+            required
+          />
+
+          <select
+           
+           id="warehouse_id" class="w-[70%] py-4 bg-gray-100 px-4 mb-3 text-black text-sm rounded-sm outline-none"
+            required required>
+  <option value="">Select Warehouse</option>
+  </select>
+          <input
+            class="md:w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+            type="text"
+      
+            id="product-variant-name"
+            name="product-variant-name"
+            required
+            placeholder="Enter Product Variant Name"
+          />
+          <input
+            class="md:w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+            type="text"
+          
+            id="product-variant-sku"
+            name="product-variant-sku"
+            required
+            placeholder="Enter Product Variant sku"
+          />
+          <input
+            class="md:w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+            type="number"
+            min="0"
+            id="product-price"
+            name="product-price"
+            required
+            placeholder="Enter Product  Price"
+          />
+
+          <button
+            type="submit"
+            id="edit-btn"
+            class="bg-teal-700 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full cursor-pointer"
+          >
+            Edit Product
+          </button>
+        </form>
+    </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>
+
