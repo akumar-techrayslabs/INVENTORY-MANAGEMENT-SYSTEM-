@@ -435,3 +435,4 @@ btn?.addEventListener("click", (e) => {
   document.getElementById("edit-form")?.classList.toggle("hidden");
   document.getElementById("productTable")?.classList.toggle("hidden");
 });
+
