@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Purchase</title>
+ <link rel="stylesheet" href="../../dist/output.css">
+    <script  type="module" src="../../dist/services/protect.js" defer></script>
+    <script  type="module" src="../../dist/index.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="module" src="../../dist/pages/ProductPurchase.js"></script>
+          <script
+      src="https://kit.fontawesome.com/3111ef2b65.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body class="flex relative">
+    <div id="sidebar-navbar"></div>
+    <div id="sidebar-placeholder" ></div>
+    <div class="flex-1 my-20 p-8">
+                  <div class="absolute right-10 top-30 w-20 h-10 bg-teal-700 shadow-2xl  rounded-2xl flex justify-center items-center cursor-pointer" title="Add new Purchase Order" id="add-btn"> <i class="fa-solid fa-plus " style="color: #ffffff;"></i></div>
+       
+<div class="hidden max-w-6xl mx-auto bg-white p-6 shadow rounded" id="purchase-add-section">
+
+  <h1 class="text-2xl font-bold mb-6">Create Purchase Order</h1>
+
+
+  <div class="grid grid-cols-3 gap-4 mb-6">
+
+
+
+          <select
+            id="supplier_id"
+            class="border p-2 rounded"
+            required
+          >
+            <option value="">Select Supplier</option>
+          </select>
+    <input id="name" placeholder="Add Purchase Name"
+      class="border p-2 rounded">
+
+      <select id="warehouse_id" class="border p-2 rounded" required>
+  <option value="">Select Warehouse</option>
+</select>
+
+  </div>
+
+  <h2 class="text-lg font-semibold mb-3">Add Products</h2>
+
+  <div class="">
+
+
+    <form class="w-full  grid grid-cols-5 gap-3 mb-4" id="product-items-form">
+                    
+        
+        <select
+            id="product"
+            class="border p-2 rounded"
+            required
+          >
+            <option value="">Select Product</option>
+          </select>
+    <input id="qty" type="number" placeholder="Qty"  class="border p-2 rounded" required>
+    <input id="price" type="number" placeholder="Unit Price" min="0" class="border p-2 rounded" required>
+    <input id="tax" type="number" placeholder="Tax %" min="0" class="border p-2 rounded" >
+
+    <button id="addItem" type="submit"
+      class="bg-green-600 rounded-3xl text-white px-4 cursor-pointer">
+      Add
+    </button>
+
+
+
+    </form>
+
+  </div>
+
+  <table class="w-full border mb-4 text-center">
+    <thead class="bg-teal-200">
+      <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Tax</th>
+        <th>Total</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody id="itemsTable"></tbody>
+  </table>
+
+  <div class="text-right font-bold text-xl mb-4">
+    Grand Total: ₹ <span id="grandTotal">0</span>
+  </div>
+
+  <button id="savePO" type="submit"
+    class="bg-teal-600 text-white px-6 py-2 rounded-3xl cursor-pointer mx-auto">
+    Save Purchase Order
+  </button>
+
+</div>
+
+
+<div class="max-w-7xl mx-auto bg-white p-6 shadow rounded" id="purchase-list">
+
+  <div class="flex justify-between mb-6">
+    <h1 class="text-2xl font-bold">Purchase Orders</h1>
+
+  </div>
+
+  <table id="purchaseTable" class="w-full text-sm text-left text-gray-600" id="productTable">
+    <thead class="bg-teal-200 text-gray-700 uppercase text-xs rounded py-4">
+      <tr>
+        <th class="px-4 py-3">#</th>
+        <th class="px-4 py-3">ID</th>
+        <th class="px-4 py-3">Warehouse</th>
+        <th class="px-4 py-3">Supplier</th>
+        <th class="px-4 py-3">Name</th>
+        <th class="px-4 py-3">Status</th>
+        <th class="px-4 py-3">Total</th>
+        <th class="px-4 py-3">Action</th>
+        <th class="px-4 py-3">Edit</th>
+        <th class="px-4 py-3">Delete</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+</div>
+
+</body>
+</html>
+
