@@ -117,7 +117,6 @@ function getCombinedProducts(): CombinedProduct[] {
         category_name: category ? category.name : "N/A",
       });
     }
-
     productVariants.forEach((variant) => {
       combined.push({
         product_id: product.id,
@@ -302,7 +301,6 @@ function editProduct(id: number): void {
 
 function updatedProduct(): void {
   if (editingProductId == null) return;
-
   const updatedProduct: Product = {
     id: editingProductId,
     name: (document.getElementById("product-name") as HTMLInputElement).value,
