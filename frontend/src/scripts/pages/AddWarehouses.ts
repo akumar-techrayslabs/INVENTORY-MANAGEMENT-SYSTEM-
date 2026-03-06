@@ -101,9 +101,9 @@ if(!editingWarehouseId)
     document.getElementById("warehouse-name") as HTMLInputElement
   ).value.trim();
 
-  const isWarehouseNameExist = warehouses.some((p:any)=>{
+  const isWarehouseNameExist = warehouses.some((p:any)=>
     p.name.toLowerCase() === name.toLowerCase() 
-  })
+  )
 
      
       if (!nameRegX.test(name)) {
