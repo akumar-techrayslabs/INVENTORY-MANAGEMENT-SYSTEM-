@@ -1,6 +1,7 @@
 import type { Category } from "../Models/Category.model.js";
 import type { Product } from "../Models/product.model.js";
 import { hasPermission } from "../services/protect.js";
+import { nameRegX } from "../utils/validations.js";
 
 declare var Swal: any;
 function showWarning(msg: string) {
@@ -121,8 +122,8 @@ form.addEventListener("submit", (e) => {
         showWarning("Category name required");
         return;
       }
-      const categoryRegX = /^[A-Za-z0-9][A-Za-z0-9\s\-_]{2,49}$/;
-      if (!categoryRegX.test(name)) {
+      // const categoryRegX = /^[A-Za-z0-9][A-Za-z0-9\s\-_]{2,49}$/;
+      if (!nameRegX.test(name)) {
         showWarning(
           "Category name should be atleast 3 digits long and doesn't exceed 50 digits, should not include and special characters",
         );

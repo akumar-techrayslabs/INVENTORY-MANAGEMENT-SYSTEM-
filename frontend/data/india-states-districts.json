@@ -1,0 +1,72 @@
+{
+  "Gujarat": [
+    "Ahmedabad",
+    "Surat",
+    "Vadodara",
+    "Rajkot",
+    "Bhavnagar",
+    "Jamnagar",
+    "Gandhinagar",
+    "Junagadh",
+    "Anand",
+    "Mehsana"
+  ],
+  "Bihar": [
+    "Patna",
+    "Gaya",
+    "Muzaffarpur",
+    "Bhagalpur",
+    "Darbhanga",
+    "Purnia",
+    "Ara",
+    "Begusarai"
+  ],
+  "Maharashtra": [
+    "Mumbai",
+    "Pune",
+    "Nagpur",
+    "Nashik",
+    "Thane",
+    "Aurangabad",
+    "Solapur",
+    "Amravati"
+  ],
+  "Karnataka": [
+    "Bangalore Urban",
+    "Mysore",
+    "Mangalore",
+    "Hubli",
+    "Belgaum",
+    "Dharwad"
+  ],
+  "Tamil Nadu": [
+    "Chennai",
+    "Coimbatore",
+    "Madurai",
+    "Salem",
+    "Trichy",
+    "Tirunelveli"
+  ],
+  "Uttar Pradesh": [
+    "Lucknow",
+    "Kanpur",
+    "Varanasi",
+    "Agra",
+    "Prayagraj",
+    "Meerut",
+    "Ghaziabad"
+  ],
+  "Delhi": [
+    "New Delhi",
+    "Central Delhi",
+    "South Delhi",
+    "North Delhi"
+  ],
+  "West Bengal": [
+    "Kolkata",
+    "Howrah",
+    "Darjeeling",
+    "Durgapur",
+    "Siliguri"
+  ]
+}
