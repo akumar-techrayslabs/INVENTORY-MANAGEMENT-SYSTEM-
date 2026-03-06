@@ -4,6 +4,7 @@ import { logout, rolefinder } from "./components/navbar.js";
 import { sidebar } from "./components/sidebar.js";
 import { loadComponent } from "./layout/layout.js";
 
+
 const BASE = window.location.origin;
 
 
