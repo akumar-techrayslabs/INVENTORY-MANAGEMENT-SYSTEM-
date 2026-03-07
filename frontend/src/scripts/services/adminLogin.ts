@@ -1,5 +1,5 @@
 
-import { loginSuperAdmin } from "./Auth.js";
+import { loginSuperAdmin, verifyToken } from "./Auth.js";
 
 const adminLoginForm = document.querySelector("form") as HTMLFormElement;
 console.log("hello ");
@@ -46,3 +46,19 @@ adminLoginForm.addEventListener("submit",async (e)=>{
     
 
 })
+
+const PATH = window.location.origin
+const isTokenIsStillValid =  verifyToken();
+
+    console.log("token is still valid ",isTokenIsStillValid);
+    // console.log(user);
+    
+    
+    if(!isTokenIsStillValid.success)
+        {
+
+            window.location.href = `${PATH}/src/pages/Auth.html`
+
+        }
+
+    
