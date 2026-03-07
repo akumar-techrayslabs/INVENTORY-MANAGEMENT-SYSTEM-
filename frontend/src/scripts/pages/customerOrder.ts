@@ -1,6 +1,7 @@
 
-import type { CustomerOrder } from "../Models/Models/CustomerOrder.model.js";
-import type { CustomerOrderItem } from "../Models/Models/CustomerOrderItem.model.js";
+
+import type { CustomerOrder } from "../Models/CustomerOrder.model.js";
+import type { CustomerOrderItem } from "../Models/CustomerOrderItem.model.js";
 import { hasPermission } from "../services/protect.js";
 import { addStockEntry, getCurrentStock } from "../services/stockManagement.js";
 
@@ -30,6 +31,30 @@ function showWarning(message: string) {
     confirmButtonText: "OK",
   });
 }
+function approveFeature(id: number) {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "This will approve the purchase order and stocks will get updated accordingly",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "Cancel",
+    cancelButtonColor: "#64748B",
+    confirmButtonText: "Yes, Approve it",
+    confirmButtonColor: "#DC2626",
+  }).then((result: any) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleted",
+        text: "Feature successfully deleted",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      approvePurchaseOrder(id);
+      window.location.reload();
+    }
+  });
+}
+(window as any).approveFeature = approveFeature;
 
 (window as any).showSuccess = showSuccess;
 (window as any).showWarning = showWarning;
@@ -177,19 +202,19 @@ for (let item of items) {
 
   let currentStock = getCurrentStock(item.product_id, item.warehouse_id);
 
-  // If editing order → add old quantity back to stock for validation
-  if(editingCustomerId){
+  // // If editing order → add old quantity back to stock for validation
+  // if(editingCustomerId){
 
-    const existingOrders = JSON.parse(localStorage.getItem("customerOrders") || "[]");
-    const existingOrder = existingOrders.find((o:any)=>o.id === editingCustomerId);
+  //   const existingOrders = JSON.parse(localStorage.getItem("customerOrders") || "[]");
+  //   const existingOrder = existingOrders.find((o:any)=>o.id === editingCustomerId);
 
-    const oldItem = existingOrder?.items.find((i:any)=>i.product_id === item.product_id);
+  //   const oldItem = existingOrder?.items.find((i:any)=>i.product_id === item.product_id);
 
-    if(oldItem){
-      currentStock = Number(currentStock) + Number(oldItem.quantity);
-    }
+  //   if(oldItem){
+  //     currentStock = Number(currentStock) + Number(oldItem.quantity);
+  //   }
 
-  }
+  // }
 
   if (Number(currentStock) < Number(item.quantity)) {
     showWarning("Insufficient stock for selected product!");
@@ -223,12 +248,12 @@ for (let item of items) {
 
     if(!product) return;
 
-    addStockEntry(
-      oldItem.product_id,
-      oldItem.warehouse_id,
-      1, // IN movement 
-      oldItem.quantity
-    );
+    // addStockEntry(
+    //   oldItem.product_id,
+    //   oldItem.warehouse_id,
+    //   1, // IN movement 
+    //   oldItem.quantity
+    // );
 
   });
 
@@ -246,19 +271,19 @@ for (let item of items) {
 
     if(!product) return;
 
-    addStockEntry(
-      item.product_id,
-      item.warehouse_id,
-      2, // OUT movement
-      item.quantity
-    );
+    // addStockEntry(
+    //   item.product_id,
+    //   item.warehouse_id,
+    //   2, // OUT movement
+    //   item.quantity
+    // );
 
   });
   customerOrders[index] = {
     id: editingCustomerId,
     warehouse_id,
     customer_id,
-    status_id,
+    status:"draft",
     created_by,
     total_amount: grandTotal,
     items
@@ -282,7 +307,8 @@ for (let item of items) {
       id: Date.now(),
       customer_id,
       warehouse_id,
-      status_id,
+      status:"draft",
+
       total_amount: grandTotal,
       created_by,
       items
@@ -296,12 +322,12 @@ for (let item of items) {
     items.forEach((item) => {
         const product = products.find((p:any)=>p.id === item.product_id);
         if(!product) return ;
-      addStockEntry(
-        item.product_id,
-        item.warehouse_id,
-        2, // OUT movement
-        item.quantity
-      );
+      // addStockEntry(
+      //   item.product_id,
+      //   item.warehouse_id,
+      //   2, // OUT movement
+      //   item.quantity
+      // );
     });
   }
 
@@ -390,7 +416,7 @@ function renderCustomerOrders() {
 
     const customer = customers.find((c: any) => c.id == order.customer_id);
     const warehouse = warehouses.find((w: any) => w.id == order.warehouse_id);
-    const status = statuses.find((s: any) => s.id == order.status_id);
+ 
 
     tableBody.innerHTML += `
       <tr class="border-t bg-white">
@@ -398,7 +424,16 @@ function renderCustomerOrders() {
         <td class="py-3 px-2">${order.id}</td>
         <td class="py-3 px-2">${customer?.name || "-"}</td>
         <td class="py-3 px-2">${warehouse?.name || "-"}</td>
-        <td class="py-3 px-2">${status?.name || "-"}</td>
+        <td class="py-3 px-2">
+  ${
+    order.status === "draft"
+      ? `<button onclick="approveFeature(${order.id})"
+         class="bg-green-500 text-white px-2 py-1 rounded cursor-pointer">
+         Approve
+       </button>`
+      : `<span class="text-green-600 font-semibold">Approved</span>`
+  }
+</td>
         <td class="py-3 px-2">₹ ${order.total_amount}</td>
         <td class="py-3 px-2">
           <button onclick="toggleItems('${rowId}')"
@@ -406,17 +441,24 @@ function renderCustomerOrders() {
             <i class="fa-solid fa-angle-down"></i>
           </button>
         </td>
-        <td>
-         <button onclick="editCustomerOrder(${order.id})"
-    class=" text-white px-2 py-3 rounded">
-   <i class="fa-solid fa-pen-to-square cursor-pointer" style="color: #1e2939;"></i>
-  </button>
-    </td>
-    <td>
-  <button onclick="deleteCustomerOrder(${order.id})"
+
+         <td>
+             ${
+  order.status === "draft"
+    ? `<button onclick="editCustomerOrder(${order.id})"
+       class="text-white px-2 py-3 rounded">
+       <i class="fa-solid fa-pen-to-square cursor-pointer" style="color:#1e2939;"></i>
+     </button>`
+    : `<span class="text-gray-400">Locked</span>`
+}
+ </td>
+ 
+      <td>
+    ${order.status === "draft" ?` <button onclick="deleteCustomerOrder(${order.id})"
     class=" text-white px-2 py-3 rounded">
       <i class="fa-solid fa-trash cursor-pointer" style="color: #1e2939;"></i>
-  </button>
+  </button>`:`<span class="text-gray-400">Locked</span>`}
+ 
     </td>
       </tr>
 
@@ -468,6 +510,54 @@ function renderCustomerOrders() {
   });
 };
 
+(window as any).approvePurchaseOrder = approvePurchaseOrder;
+// function to approved Purchase Orders 
+ function approvePurchaseOrder(id: number) {
+
+  let customerOrder: CustomerOrder[] =
+    JSON.parse(localStorage.getItem("customerOrders") || "[]");
+
+    if(!customerOrder)
+    {
+      showWarning("No purchase Order found");
+      return;
+    }
+  const index = customerOrder.findIndex(po => po.id === id);
+
+  if (index === -1) return;
+
+  const order = customerOrder[index];
+  if(order?.status === "approved")
+  {
+    showWarning("Order is already approved");
+    return;
+  }
+  if(!order)return;
+     order.items.forEach(item => {
+      addStockEntry(
+        item.product_id,
+        order.warehouse_id,
+        2,
+        item.quantity
+      );
+    });
+  if(order?.status)
+
+  customerOrder[index]!.status = "approved";
+
+
+  localStorage.setItem("customerOrders", JSON.stringify(customerOrder));
+
+  // showSuccess("Purchase Order Approved");
+  Swal.fire({
+    title: "Success!",
+    text: "Customer Order Approved and Stock Updated",
+    icon: "success",
+    confirmButtonText: "OK"
+  });
+renderCustomerOrders();
+ 
+};
 /*
 
   items.forEach(item => {
