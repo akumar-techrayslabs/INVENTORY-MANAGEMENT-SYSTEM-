@@ -4,7 +4,6 @@ import type { Category } from "../Models/Category.model.js";
 import type { CombinedProduct } from "../Models/CombinedProduct.model.js";
 import type { Product } from "../Models/product.model.js";
 import type { ProductVariant } from "../Models/productVariant.model.js";
-import { getCurrentStock } from "../services/stockManagement.js";
 import { showSuccess, showWarning } from "../utils/SwalFunctions.js";
 import { ProductNameRegex, skuRegex } from "../utils/validations.js";
 
@@ -176,7 +175,7 @@ function renderTable() {
     
     
     
-         <td class="py-3 px-4 ">${Math.max(getCurrentStock(product.product_id,product.warehouse_id || 0 ),0)}</td>
+    
     <td class="py-3 px-4"> <i class="fa-solid fa-trash cursor-pointer" style="color: #ff0000;" onclick="deleteFeature(${product.product_id})"></i>
     </td>
     
@@ -186,7 +185,7 @@ function renderTable() {
     
     `;
     // <td class="py-3 px-4 ">${product.reserved_quantity ?? "-"}</td>
-
+    //  <td class="py-3 px-4 ">${Math.max(getCurrentStock(product.product_id,product.warehouse_id || 0 ),0)}</td>
     
     tableBody.appendChild(row);
   });
