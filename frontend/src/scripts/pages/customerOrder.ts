@@ -133,7 +133,8 @@ function renderItems() {
 saveBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-
+  console.log("it is working");
+  
   if (items.length === 0) {
     showWarning("Add at least one product to create Customer Order!");
     return;
@@ -195,7 +196,8 @@ for (let item of items) {
     return;
   }
 
-}if (editingCustomerId) {
+}
+
 
 
 
@@ -326,7 +328,7 @@ for (let item of items) {
 
 
   showSuccess();
-}});
+});
 
 
 
