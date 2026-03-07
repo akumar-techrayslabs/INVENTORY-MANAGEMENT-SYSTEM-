@@ -21,6 +21,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     rolefinder();
 
 });
+localStorage.setItem("movementTypes", JSON.stringify([
+  { id: 1, name: "IN" },
+  { id: 2, name: "OUT" }
+]));
 
  localStorage.setItem("permissions", JSON.stringify([
   { id: 1, name: "CREATE_PRODUCT" },
