@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Order</title>
+  <link rel="stylesheet" href="../../dist/output.css">
+
+  <script type="module" src="../../dist/services/protect.js" defer></script>
+  <script type="module" src="../../dist/index.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+  <script type="module" src="../../dist/pages/customerOrder.js" defer></script>
+
+  <script
+    src="https://kit.fontawesome.com/3111ef2b65.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+
+<body class="flex relative">
+
+  <div id="sidebar-navbar"></div>
+  <div id="sidebar-placeholder"></div>
+
+  <div class="flex-1 my-20 p-8">
+
+  
+         <div class="absolute right-5 top-30 w-30 h-15 bg-teal-700 shadow-2xl  rounded-2xl flex flex-col justify-center items-center cursor-pointer" title="Add Category" id="add-btn">
+                <p class="text-white font-bold text-sm">Add Orders</p> 
+                <i class="fa-solid fa-plus " style="color: #ffffff;"></i>
+              </div>
+
+   
+    <div class="hidden max-w-6xl mx-auto bg-white p-6 shadow rounded" id="customer-add-section">
+
+      <h1 class="text-2xl font-bold mb-6" id="heading">Create Customer Order</h1>
+
+    
+      <div class="grid grid-cols-3 gap-4 mb-6">
+
+        <select id="customer_id" class="border p-2 rounded" required>
+          <option value="">Select Customer</option>
+        </select>
+
+        <!-- <select id="warehouse_id" class="border p-2 rounded" required>
+          <option value="">Select Warehouse</option>
+        </select> -->
+
+  
+
+      </div>
+
+      <h2 class="text-lg font-semibold mb-3">Add Products</h2>
+
+      <form class="grid grid-cols-4 gap-3 mb-4" id="product-items-form">
+
+        <select id="product" class="border p-2 rounded" required>
+          <option value="">Select Product</option>
+        </select>
+
+        <input id="qty" type="number" placeholder="Qty" class="border p-2 rounded" required>
+
+        <input id="price" type="number" placeholder="Unit Price" min="0" class="border p-2 rounded" required>
+
+        <button
+          type="submit"
+          class="bg-green-600 rounded-3xl text-white px-4 cursor-pointer"
+        >
+          Add
+        </button>
+
+      </form>
+
+      <table class="w-full border mb-4 text-center">
+        <thead class="bg-gray-200">
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="itemsTable"></tbody>
+      </table>
+
+      <div class="text-right font-bold text-xl mb-4">
+        Grand Total: ₹ <span id="grandTotal">0</span>
+      </div>
+
+ 
+              <div class="flex justify-around items-center py-3 px-8  w-full mt-10"><button type="submit" class="bg-teal-700 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full cursor-pointer" id="saveCO">
+  Save Customer Order
+</button>
+        <button type="button" class="bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full cursor-pointer" id="close-btn">
+Cancel 
+</button></div>
+    </div>
+
+ 
+    <div class="max-w-7xl mx-auto bg-white p-6 shadow rounded" id="customer-list">
+
+      <div class="flex justify-between mb-6">
+        <h1 class="text-2xl font-bold">Customer Orders</h1>
+      </div>
+
+      <table id="customerTable" class="w-full text-sm text-left text-gray-600">
+        <thead class="bg-teal-200 text-gray-700 uppercase text-xs">
+          <tr>
+            <th class="px-4 py-3">#</th>
+            <th class="px-4 py-3">ID</th>
+            <th class="px-4 py-3">Customer</th>
+            <th class="px-4 py-3">Warehouse</th>
+            <th class="px-4 py-3">Status</th>
+            <th class="px-4 py-3">Total</th>
+            <th class="px-4 py-3">Action</th>
+            <th class="px-4 py-3">Edit</th>
+            <th class="px-4 py-3">Delete</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+    </div>
+
+  </div>
+</body>
+</html>

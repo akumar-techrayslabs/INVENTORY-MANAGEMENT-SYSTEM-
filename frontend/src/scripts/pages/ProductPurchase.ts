@@ -28,6 +28,30 @@ function showWarning(message: string) {
   });
 }
 
+function approveFeature(id: number) {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "This will approve the purchase order and stocks will get updated accordingly",
+    icon: "warning",
+    showCancelButton: true,
+    cancelButtonText: "Cancel",
+    cancelButtonColor: "#64748B",
+    confirmButtonText: "Yes, Approve it",
+    confirmButtonColor: "#DC2626",
+  }).then((result: any) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleted",
+        text: "Feature successfully deleted",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      approvePurchaseOrder(id);
+      window.location.reload();
+    }
+  });
+}
+(window as any).approveFeature = approveFeature;
 (window as any).showSuccess = showSuccess;
 
 (window as any).showWarning = showWarning;
@@ -54,7 +78,12 @@ let products = JSON.parse(localStorage.getItem("products") || "[]");
 const btn = document.getElementById("add-btn") as HTMLDivElement;
 console.log("btn", btn);
 
+const close_btn = document.getElementById("close-btn") as HTMLDivElement;
+
+// button to open form for creating or updating purchase order 
+
 btn.addEventListener("click", () => {
+  btn.classList.toggle("hidden");
   console.log("clicked");
 
   purchase_add_section.classList.toggle("hidden");
@@ -212,15 +241,15 @@ saveBtn.addEventListener("click", (e) => {
     purchaseOrders.push(newPO);
 
 
-    // Only add stock when creating new order
-    items.forEach(item => {
-      addStockEntry(
-        item.product_id,
-        warehouse_id,
-        1,
-        item.quantity
-      );
-    });
+    // Only add stock when creating new order but changed this due to status functionality added now the stock only get updated after status is approved 
+    // items.forEach(item => {
+    //   addStockEntry(
+    //     item.product_id,
+    //     warehouse_id,
+    //     1,
+    //     item.quantity
+    //   );
+    // });
   }
 
 
@@ -249,6 +278,8 @@ const tableBody = document.querySelector(
   "#purchaseTable tbody",
 ) as HTMLTableSectionElement;
 
+
+// function to render purchase Orders 
 function render() {
   const purchaseOrders: PurchaseOrder[] = JSON.parse(
     localStorage.getItem("purchaseOrders") || "[]",
@@ -269,7 +300,17 @@ function render() {
 
         <td class="py-3 px-2">${po.supplier_id}</td>
         <td class="py-3 px-2">${po.name}</td>
-        <td class="py-3 px-2">${po.status}</td>
+       <td class="py-3 px-2">
+  ${
+    po.status === "draft"
+      ? `<button onclick="approveFeature(${po.id})"
+         class="bg-green-500 text-white px-2 py-1 rounded cursor-pointer">
+         Approve
+       </button>`
+      : `<span class="text-green-600 font-semibold">Approved</span>`
+  }
+</td>
+
         <td class="py-3 px-2">₹ ${po.total_amount}</td>
         <td class="py-3 px-2">
           <button onclick="toggleItems('${rowId}')"
@@ -279,16 +320,22 @@ function render() {
           </button>
         </td>
         <td>
-         <button onclick="editPurchaseOrder(${po.id})"
-    class=" text-white px-2 py-3 rounded">
-   <i class="fa-solid fa-pen-to-square cursor-pointer" style="color: #1e2939;"></i>
-  </button>
+         ${
+  po.status === "draft"
+    ? `<button onclick="editPurchaseOrder(${po.id})"
+       class="text-white px-2 py-3 rounded">
+       <i class="fa-solid fa-pen-to-square cursor-pointer" style="color:#1e2939;"></i>
+     </button>`
+    : `<span class="text-gray-400">Locked</span>`
+}
+
     </td>
     <td>
-  <button onclick="deletePurchaseOrder(${po.id})"
+    ${po.status === "draft" ?` <button onclick="deletePurchaseOrder(${po.id})"
     class=" text-white px-2 py-3 rounded">
       <i class="fa-solid fa-trash cursor-pointer" style="color: #1e2939;"></i>
-  </button>
+  </button>`:`<span class="text-gray-400">Locked</span>`}
+ 
     </td>
       </tr>
 
@@ -303,7 +350,7 @@ function render() {
 
 (window as any).deletePurchaseOrder = function (id: number) {
 
-
+  
   Swal.fire({
     title: "Are you sure?",
     text: "This will delete the Purchase Order",
@@ -352,14 +399,72 @@ function render() {
   });
 };
 
+(window as any).approvePurchaseOrder = approvePurchaseOrder;
+// function to approved Purchase Orders 
+ function approvePurchaseOrder(id: number) {
+
+  let purchaseOrders: PurchaseOrder[] =
+    JSON.parse(localStorage.getItem("purchaseOrders") || "[]");
+
+    if(!purchaseOrders)
+    {
+      showWarning("No purchase Order found");
+      return;
+    }
+  const index = purchaseOrders.findIndex(po => po.id === id);
+
+  if (index === -1) return;
+
+  const order = purchaseOrders[index];
+  if(order?.status === "approved")
+  {
+    showWarning("Order is already approved");
+    return;
+  }
+  if(!order)return;
+     order.items.forEach(item => {
+      addStockEntry(
+        item.product_id,
+        order.warehouse_id,
+        1,
+        item.quantity
+      );
+    });
+  if(order?.status)
+
+  purchaseOrders[index]!.status = "approved";
+
+
+  localStorage.setItem("purchaseOrders", JSON.stringify(purchaseOrders));
+
+  // showSuccess("Purchase Order Approved");
+  Swal.fire({
+    title: "Success!",
+    text: "Purchase Order Approved and Stock Updated",
+    icon: "success",
+    confirmButtonText: "OK"
+  });
+
+  render();
+};
+
 
 
 (window as any).editPurchaseOrder = function (id: number) {
+  btn.classList.toggle("hidden");
   const purchaseOrders: PurchaseOrder[] = JSON.parse(
     localStorage.getItem("purchaseOrders") || "[]",
   );
 
-  const po = purchaseOrders.find((p) => p.id === id);
+const po = purchaseOrders.find((p) => p.id === id);
+if (!po) return;
+
+if (po.status === "approved") {
+  showWarning("Approved purchase orders cannot be edited");
+  return;
+}
+
+
 
   if (!po) return;
 
@@ -481,6 +586,14 @@ function loadWarehousesForDropdown() {
     `;
   });
 }
+
+close_btn.addEventListener("click", () => {
+
+  btn.classList.toggle("hidden");
+  purchase_add_section.classList.toggle("hidden");
+  // table.classList.toggle("hidden");
+  purchase_list.classList.toggle("hidden");
+});
 
 loadWarehousesForDropdown();
 
